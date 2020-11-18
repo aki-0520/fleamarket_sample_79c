@@ -29,6 +29,10 @@ class ItemsController < ApplicationController
   end
 
   def create
+<<<<<<< Updated upstream
+=======
+    # binding.pry
+>>>>>>> Stashed changes
     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
