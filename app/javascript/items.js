@@ -1,6 +1,6 @@
 document.addEventListener("turbolinks:load"
 , function () {
-
+console.log(1)
   // 画像用のinputを生成する関数
   const buildFileField = (num)=> {
     const html = `<div data-index="${num}" class="js-file_group">
@@ -22,19 +22,22 @@ document.addEventListener("turbolinks:load"
                   </div>`;
     return html;
   }
-
+  console.log(2)
   // file_fieldのnameに動的なindexをつける為の配列
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
-
+  console.log(3)
   // 既に使われているindexを除外
   lastIndex = $('.js-file_group:last').data('index');
   fileIndex.splice(0, lastIndex);
-
+  console.log(4)
   $('.hidden-destroy').hide();
+  console.log(5)
   $('#image-box').on('change', '.js-file', function(e)  {
+    console.log(6)
     const targetIndex = $(this).parent().data('index');
-
+    
     // ファイルのブラウザ上でのURLを取得する
+    console.log(7)
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
     // 該当indexを持つimgタグがあれば取得して変数imgに入れる(画像変更の処理)

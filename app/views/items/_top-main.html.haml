@@ -97,6 +97,7 @@
                     %li
                     = icon('fas', 'star')
                   %p.zei (税込)
+                  -# = render partial: "favorites/favorite", locals: { item: "items_last_five[index]"}
   .main__pic6
     %h2.title ピックアップブランド
     .main__pic6__box
