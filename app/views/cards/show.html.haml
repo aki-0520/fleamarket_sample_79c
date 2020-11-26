@@ -9,3 +9,6 @@
   = form_tag(card_path(current_user.id), method: :delete, id: 'charge-form',  name: "inputForm") do
     %input{ type: "hidden", name: "card_id", value: "" }
     %button.delete-btn 削除する
+  = form_tag(card_path(current_user.id), method: :delete, id: 'charge-edit_form',  name: "inputForm") do
+    %input{ type: "hidden", name: "card_id", value: "" }
+    %button.delete-btn 編集する
