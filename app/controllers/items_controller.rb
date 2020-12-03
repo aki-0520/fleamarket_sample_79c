@@ -15,11 +15,17 @@ class ItemsController < ApplicationController
   def show
     @items_show = Item.where(id:params[:id])
     @item_images_detail = ItemImage.all.includes(:item).where(item_id:params[:id])
-    @nickname = Item.find(params[:id]).seller.nickname
     @category_id = @items_show.pluck(:category_id)[0]
     @category_parent = Category.find(@category_id).parent.parent
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
+    @nickname = Item.find(params[:id]).seller.nickname
+    @item_condition = ItemCondition.find(@items_show[0][:item_condition_id]).name
+    @preparation_day = PreparationDay.find(@items_show[0][:preparation_day_id]).name
+    @shipping_charge_player = ShippingChargePlayers.find(@items_show[0][:shipping_charge_players_id]).name
+    @size = Size.find(@items_show[0][:size_id]).name
+    @delivery_type = DeliveryType.find(@items_show[0][:delivery_type_id]).name
+    @prefecture = Prefecture.find(@items_show[0][:prefecture_code]).name
   end
 
   def new
@@ -29,8 +35,14 @@ class ItemsController < ApplicationController
   end
 
   def create
-    # binding.pry
+    
     @item = Item.new(item_params)
+    if @item.category.present?
+      if @item.category.parent.parent.present?
+        @children = @item.category.parent.siblings
+        @grandchildren = @item.category.siblings
+      end
+    end
     if @item.save
       redirect_to root_path
     else
@@ -45,8 +57,10 @@ class ItemsController < ApplicationController
     @grandchild = @item.category
     @child = @grandchild.parent
     @parent  = @child.parent[:id]
-    @children = Category.find(@parent).children
-    @grandchildren = Category.find(@child[:id]).children
+    # @children = Category.find(@parent).children
+    # @grandchildren = Category.find(@child[:id]).children
+    @children = @item.category.parent.siblings
+    @grandchildren = @item.category.siblings
   end
 
   def update
@@ -59,13 +73,13 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item = Item.find(params[:id])
     @item.destroy
     redirect_to root_path
   end
 
   def set_parents
     @parents = Category.where(ancestry: nil)
-    # binding.pry
   end
   
   def get_category_children

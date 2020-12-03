@@ -104,8 +104,10 @@ $border-color:rgb(245, 245, 245);
           }
 
         #image-box {
-          height: 320px;
           margin: 8px;
+          height: 100%;
+          overflow-y: auto;
+          max-height: 320px
           }
         
         .inner-frame {

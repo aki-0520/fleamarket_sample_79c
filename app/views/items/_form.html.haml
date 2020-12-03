@@ -73,8 +73,8 @@
               .category
                 =f.collection_select :category_id, @parents, :id, :name,{selected:@parent,include_blank: "選択してください",id: "item_category_id"},class:"serect_field",id: "item_category_id"
                 - if @item[:category_id].present?
-                  =f.collection_select :category_id, @children, :id, :name,{selected:@child[:id],include_blank: "選択してください",id: "item_category_id"},class:"serect_field",id: "item_category_id2"
-                  =f.collection_select :category_id, @grandchildren, :id, :name,{selected:@grandchild[:id],include_blank: "選択してください",id: "item_category_id"},class:"serect_field",id: "item_category_id3"
+                  =f.collection_select :category_id, @children, :id, :name,{selected:@item.category.parent.id,include_blank: "選択してください",id: "item_category_id"},class:"serect_field",id: "item_category_id2"
+                  =f.collection_select :category_id, @grandchildren, :id, :name,{selected:@item.category.id,include_blank: "選択してください",id: "item_category_id"},class:"serect_field",id: "item_category_id3"
             .p.arrow__category
               ﹀
             %ul
