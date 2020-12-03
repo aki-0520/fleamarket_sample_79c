@@ -70,7 +70,7 @@
               %td=@delivery_type
             = render 'favorites/favorite', item: @item
       -if current_user.present? && current_user.id == @items_show[0][:seller_id] then
-        =link_to edit_item_path do
+        =link_to edit_item_path,"data-turbolinks": false do
           %button.purchese__btn 編集
         =link_to item_path, method: :delete do
           %button.purchese__btn 削除
