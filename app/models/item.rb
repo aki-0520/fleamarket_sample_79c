@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   has_many :item_images, dependent: :destroy
   accepts_nested_attributes_for :item_images, allow_destroy: true
 
-  # has_many :comments, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
   # has_one :user_evaluation
@@ -21,7 +21,7 @@ class Item < ApplicationRecord
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
   belongs_to :brand
-
+  
   belongs_to :user, foreign_key: 'user_id'
   
   # enum trading_status: { waiting: 0, working: 1, completed: 2 }

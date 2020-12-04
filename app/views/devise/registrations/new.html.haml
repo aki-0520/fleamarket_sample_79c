@@ -52,7 +52,7 @@
         %h6.SendAccountInformationinput 商品送付先情報入力
         .field
           = f.label :send_first_name, "送付先のお名前（漢字）", class: "fieldtitle"
-          %span.form-require "必須"
+          %span.form-require 必須
           %br/
           .fieldsidebyside
             = f.text_field :send_family_name, autofocus: true, placeholder: "例）山田", class: "fieldinput"
@@ -60,7 +60,7 @@
 
         .field
           = f.label :send_family_name_kana, "送付先のお名前（カナ）", class: "fieldtitle"
-          %span.form-require "必須"
+          %span.form-require 必須
           %br/
           .fieldsidebyside
             = f.text_field :send_family_name_kana, autofocus: true, placeholder: "例）ヤマダ", class: "fieldinput"
@@ -69,36 +69,36 @@
 
         .field 
           %span.Prefectures 都道府県
-          %span.form-require "必須"
+          %span.form-require 必須
           = f.collection_select :prefecture_code, Prefecture.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
 
         .field
           = f.label :post, "郵便番号", class: "fieldtitle"
-          %span.form-require "必須"
+          %span.form-require 必須
           %br/
           = f.text_field :post, autofocus: true, placeholder: "例）165-※※※※", class: "fieldinput"
 
         .field
           = f.label :city, "市区町村", class: "fieldtitle"
-          %span.form-require "必須"
+          %span.form-require 必須
           %br/
           = f.text_field :city, autofocus: true, placeholder: "例）中野区", class: "fieldinput"
 
         .field
           = f.label :address, "番地", class: "fieldtitle"
-          %span.form-require "必須"
+          %span.form-require 必須
           %br/
           = f.text_field :address, autofocus: true, placeholder: "例)○丁目○番地", class: "fieldinput"
 
         .field
           = f.label :apartment, "マンション・アパート名", class: "fieldtitle"
-          %span.form-require "任意"
+          %span.form-require 任意
           %br/
           = f.text_field :apartment, autofocus: true, placeholder: "例)○○○○ ○号", class: "fieldinput"
 
         .field
           = f.label :phone, "電話番号", class: "fieldtitle"
-          %span.form-require "任意"
+          %span.form-require 任意
           %br/
           = f.text_field :phone, autofocus: true, placeholder: "例)080-※※※※-※※※※", class: "fieldinput"
         
