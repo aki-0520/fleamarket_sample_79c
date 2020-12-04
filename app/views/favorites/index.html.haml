@@ -8,11 +8,12 @@
             .mypage-item-list-main
               .mypage-item-list-image
                 .mypage-item-list-image-flame
-                = image_tag "#{favorite.item.item_images[0].src.url}", width: "50", height: '50'
+                  = link_to item_path(favorite.item.id) do
+                    = image_tag favorite.item.item_images[0].src.url, width: "50", height: '50'
               .mypage-item-text
                 .mypage-item-text-name
                 = favorite.item.name
                 .mypage-item-text-price
                 = favorite.item.price
         - else 
-          = redirect_to root_path
+          = redirect_to root_path 
