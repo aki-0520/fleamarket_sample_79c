@@ -100,7 +100,9 @@ ActiveRecord::Schema.define(version: 2020_11_26_142308) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "city"
+
     t.string "post"
+
     t.string "address"
     t.string "apartment"
     t.string "phone"
