@@ -13,11 +13,16 @@ class User < ApplicationRecord
   validates :first_name_kana, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
   validates :family_name_kana, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
   validates :password, presence: true, format: { with: /\A[a-zA-Z0-9]+\z/, message: 'は半角アルファベット（大文字・小文字・数値）で入力して下さい。'}
-  
+  validates :post, presence: true
+  validates :city, presence: true
+  validates :prefecture_code, presence: true
+  validates :address, presence: true
+
   has_one :card, dependent: :destroy
   has_many :buyed_items, foreign_key: "buyer_id", class_name: "Item"
   has_many :selling_items, -> { where("buyer_id is NULL") }, foreign_key: "seller_id", class_name: "Item"
   has_many :sold_items, -> { where("buyer_id is not NULL") }, foreign_key: "seller_id", class_name: "Item"
+  has_many :comments, dependent: :destroy
 
   has_many :favorites, dependent: :destroy
 
@@ -27,4 +32,5 @@ class User < ApplicationRecord
   
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
+
 end

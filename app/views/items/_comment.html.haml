@@ -1,0 +1,50 @@
+.commentBox
+  .comment_list
+    - if user_signed_in?
+      - @commentALL.each do |comment|
+        - if comment.user_id == current_user.id   
+          .comment_Me.comment_one_block{data:{index: comment.id}}                   
+            - if comment.delete_check == 1   # 削除済の場合
+              .comment_content
+                出品者によりこのコメントは削除されました。
+                - if comment.item.seller == current_user    # 出品者とログインユーザーが等しい場合
+                  .comment_restore{data:{index: comment.id}} 
+                    = link_to "復元する",restore_comment_path(comment.id),class:"fukugen"
+                  .comment_delete.complete_delete{data:{index: comment.id}}     
+                    = link_to '完全削除', comment_path(comment.id) ,method: :delete
+            - else   # 削除されていない場合
+              .comment_content
+                = comment.comment
+                .comment_create_at
+                  = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                  - if comment.item.seller == current_user
+                    .comment_delete.me_pre_delete{data:{index: comment.id}}     
+                      = link_to '削除する', comment_path(comment.id) ,method: :patch
+            .comment_user_name
+              = comment.user.nickname
+              - if comment.user ==  comment.item.seller  # コメントユーザーと出品者が同じ場合
+                .seller_display
+                  出品者
+        - else 
+          .comment_Other.comment_one_block{data:{index: comment.id}}    
+            .comment_user_name
+              = comment.user.nickname
+              - if comment.user ==  comment.item.seller  # コメントユーザーと出品者が同じ場合
+                .seller_display
+                  出品者
+            - if comment.delete_check == 1   # 削除済の場合
+              .comment_content_other
+                出品者によりこのコメントは削除されました。
+                - if comment.item.seller == current_user    # 出品者とログインユーザーが等しい場合
+                  .comment_restore{data:{index: comment.id}} 
+                    = link_to "復元する",restore_comment_path(comment.id),class:"fukugen"
+                  .comment_delete.complete_delete{data:{index: comment.id}}     
+                    = link_to '完全削除', comment_path(comment.id) ,method: :delete
+            - else    # 削除されていない場合
+              .comment_content_other
+                = comment.comment
+                .comment_create_at
+                  = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                  - if comment.item.seller == current_user   # 出品者とログインユーザーが等しい場合
+                    .comment_delete.other_pre_delete{data:{index: comment.id}}     
+                      = link_to '削除する', comment_path(comment.id) ,method: :patch

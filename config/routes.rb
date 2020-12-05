@@ -40,5 +40,11 @@ Rails.application.routes.draw do
   resources :searches,only:[:index]
 
   get  "searches/detail_search"  => "searches#detail_search"
-  
+
+  resources :comments, only:[:create,:update,:destroy] do
+    member do
+      get 'restore'
+      end
+    end
+
 end

@@ -16,6 +16,7 @@ class ItemsController < ApplicationController
   def show
     @items_show = Item.where(id:params[:id])
     @item_images_detail = ItemImage.all.includes(:item).where(item_id:params[:id])
+    
     @category_id = @items_show.pluck(:category_id)[0]
     @category_parent = Category.find(@category_id).parent.parent
     @category_child = Category.find(@category_id).parent
@@ -27,6 +28,9 @@ class ItemsController < ApplicationController
     @size = Size.find(@items_show[0][:size_id]).name
     @delivery_type = DeliveryType.find(@items_show[0][:delivery_type_id]).name
     @prefecture = Prefecture.find(@items_show[0][:prefecture_code]).name
+
+    @comment = Comment.new
+    @commentALL = Comment.where(item_id:params[:id])
   end
 
   def new
