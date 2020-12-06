@@ -86,7 +86,7 @@
                 .main__pic5__box__lists__list_photo__sold
                   .main__pic5__box__lists__list_photo__sold__inner
                     SOLD
-              =link_to image_tag("#{item_image.src}",width:"220px",height:"150px"),item_path(id: item_image.item_id)
+              =link_to image_tag("#{item_image.src}",width:"220px",height:"150px","data-turbolinks": false),item_path(id: item_image.item_id)
               .main__pic5__box__lists__list__name
                 %h3.text 
                   =@items_last_five[index][:name]
@@ -97,7 +97,21 @@
                     %li
                     = icon('fa', 'star')
                   %p.zei (税込)
-                  -# = render partial: "favorites/favorite", locals: { item: "items_last_five[index]"}
+                  - if user_signed_in?
+                    - if @items_last_five[index].favorited_by?(current_user)
+                      = icon('fas', 'heart')
+                      いいね！
+                      = @items_last_five[index].favorites.count
+                    - else 
+                      = icon('far', 'heart')
+                      いいね！
+                      = @items_last_five[index].favorites.count
+                  - else 
+                    = icon('far', 'heart')
+                    いいね！
+                    = @items_last_five[index].favorites.count
+                  
+
   .main__pic6
     %h2.title ピックアップブランド
     .main__pic6__box

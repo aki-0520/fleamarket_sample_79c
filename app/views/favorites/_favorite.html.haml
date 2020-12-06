@@ -1,11 +1,16 @@
-#favorite{id:'item.id'}
-  - if !Favorite.exists?(user: current_user, item_id: item.id)
-    = link_to item_favorites_path(item), method: :post, remote: true, class: "favorite-btn favorite-post" do
-      %i.far.fa-thumbs-up
-        %span いいね！
-        = item.favorites.length
+- if user_signed_in?
+  - if item.favorited_by?(current_user)
+    = link_to item_favorites_path(item.id), method: :delete, class: "favorite red", remote: true do
+      = icon('fas', 'heart')
+      いいね！
+      = item.favorites.count
   - else 
-    = link_to item_favorites_path(item), method: :delete, remote: true, class: "favorite-btn favorite-delete" do
-      %i.far.fa-thumbs-up
-        %span いいね！
-        = item.favorites.length
+    = link_to item_favorites_path(item.id), method: :post, class: "favorite", remote: true do
+      = icon('far', 'heart')
+      いいね！
+      = item.favorites.count
+- else 
+  = link_to new_user_session_path, class: "favorite", remote: false do
+    = icon('far', 'heart')
+    いいね！
+    = item.favorites.count

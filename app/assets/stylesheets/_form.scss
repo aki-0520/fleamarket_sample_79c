@@ -104,8 +104,10 @@ $border-color:rgb(245, 245, 245);
           }
 
         #image-box {
-          height: 320px;
           margin: 8px;
+          height: 100%;
+          overflow-y: auto;
+          max-height: 320px
           }
         
         .inner-frame {
@@ -352,7 +354,8 @@ $border-color:rgb(245, 245, 245);
       }
 
         .Form__submit {
-          background-color: #ea352d;
+          background-color: #3CCACE;
+          border-radius: 30px;
           color: #fff;
           width: 50%;
           color: #fff;
