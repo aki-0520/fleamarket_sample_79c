@@ -1,0 +1,108 @@
+.buy-content__title{
+  display: block;
+  text-align: center;
+  font-size: 24px;
+  line-height: 34px;
+  font-weight: 600;
+  margin-top: 30px;
+}
+.buy-content__item{
+  border-top: 1px solid rgb(245, 245, 245);
+  &__inner{
+    display: flex;
+    -webkit-box-pack: justify;
+  }
+  .buy-item-main{
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: center;
+    margin-top: 40px;
+    .buy-item-image{
+      -webkit-box-pack: center;
+      height: 80px;
+      width: 80px;
+      align-items: center;
+    }
+    .buy-item-detail{
+      display: flex;
+      justify-content: center;
+      .buy-item-name{
+        padding-top: 10px;
+        font-size: 14px;
+        line-height: 1.4em;
+        margin-bottom: 8px;
+        .buy-price{
+          text-align:center;
+        }
+      }
+    }
+  }
+  .buy-price-table{
+    border-top: 1px solid rgb(245, 245, 245);
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    align-items: center;
+    margin-bottom: 24px;
+    margin-top: 24px;
+    .buy-price-table__left{
+      margin-right: 100px;
+    }
+  }
+}
+.buy-content__user-info{
+  border-top: 1px solid rgb(245, 245, 245);
+  justify-content: center;
+  .buy-content__user-info__inner{
+    font-size: 14px;
+    text-align: center;
+    .Method{
+      font-size: 18px;
+      font-weight: 600;
+      margin-right: 140px;
+    }
+    .Mehod-text{
+      margin-top: 20px;
+      font-size: 14px;
+      .Deadline{
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: 600;
+        margin-right: 80px;
+        margin-bottom: 24px;
+      }
+    }
+  }
+  .buy-content__user-info__delivery{
+    border-top: 1px solid rgb(245, 245, 245);
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 24px;
+    .address{
+      font-size: 18px;
+      font-weight: 600;
+      margin-right: 160px;
+      margin-bottom: 20px;
+    }
+    .address-text{
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .buy-button{
+      background-color: red;
+      color: white;
+      width: 20%;
+      line-height: 48px;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      -webkit-transition: all ease-out .3s;
+      transition: all ease-out .3s;
+      cursor: pointer;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+}

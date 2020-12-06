@@ -4,12 +4,12 @@
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .field
           = f.label :email, "Eメールアドレス", class: "fieldtitle"
-          %span.form-require "必須"
+          %span.form-require 必須
           %br/
           = f.email_field :email, autofocus: true, autocomplete: "email", class: "fieldinput"
         .field
           = f.label :password, "パスワード", class: "fieldtitle"
-          %span.form-require "必須"
+          %span.form-require 必須
           %br/
           = f.password_field :password, autocomplete: "current-password", class: "fieldinput"
         - if devise_mapping.rememberable?

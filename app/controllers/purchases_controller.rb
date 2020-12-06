@@ -7,7 +7,7 @@ class PurchasesController < ApplicationController
     @parents = Category.where(ancestry: nil)
     if @card.blank?
       #登録された情報がない場合にカード登録画面に移動
-      redirect_to new_card_path
+      redirect_to new_card_path,turbolinks: false
     else
       Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_PRIVATE_KEY)
       #保管した顧客IDでpayjpから情報取得

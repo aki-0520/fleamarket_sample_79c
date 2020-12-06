@@ -1,0 +1,36 @@
+.search
+  .search-container
+    .search-left
+      = render 'searches/form-bar'
+    .search-right
+      %section.items-box-container
+        -if @search.present?
+          %h2.search-result-head
+            =@search
+            %span.search-result-head-text
+              の検索結果
+          .search-result-number
+            ="1-#{@products.count}件表示"
+        -else
+          %h2.search-result-nil
+            検索結果
+          .search-result-number
+            ="1-#{@products.count}件表示"
+        .items-box-content
+          -@searched_item_images_top.each_with_index do |item_image,index|
+            .main__pic5__box__lists__list
+              -if @product_buyer_price_name_id[index][0].present? 
+                .main__pic5__box__lists__list_photo__sold
+                  .main__pic5__box__lists__list_photo__sold__inner
+                    SOLD
+              =link_to image_tag("#{item_image.src}",width:"220px",height:"150px"),item_path(id: @product_buyer_price_name_id[index][3])
+              .main__pic5__box__lists__list__name
+                %h3.text 
+                  =@product_buyer_price_name_id[index][1]
+                %h4.data
+                  %ul.ul
+                    %li.li 
+                      =@product_buyer_price_name_id[index][2]
+                    %li
+                    = icon('fa', 'star')
+                  %p.zei (税込)

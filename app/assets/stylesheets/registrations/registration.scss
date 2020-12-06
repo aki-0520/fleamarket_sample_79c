@@ -162,5 +162,30 @@
   border-bottom: 1px solid #dedede;
   background: #ffffff;
   font-size: 14px;
+}
+
+.my__page__function3{
+  text-decoration: none;
+  color: black;
+  display: block;
+  position: relative;
+  height: 54px;
+  padding: 16px;
+  border-bottom: 1px solid #dedede;
+  background: #ffffff;
+  font-size: 14px;
   margin-bottom: 150px;
+}
+
+.SendAccountInformationinput{
+  border-bottom: solid 1px;
+  padding: 8px;
+  border-color: whitesmoke;
+  margin-top: 100px;
+}
+
+.Prefectures{
+  font-size: 14px;
+  display: flex;
+  padding-left: 20px;
 }

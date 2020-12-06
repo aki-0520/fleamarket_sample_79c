@@ -4,8 +4,8 @@ class Item < ApplicationRecord
   has_many :item_images, dependent: :destroy
   accepts_nested_attributes_for :item_images, allow_destroy: true
 
-  # has_many :comments, dependent: :destroy
-  has_many :favorites
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
   # has_one :user_evaluation
 
@@ -21,7 +21,7 @@ class Item < ApplicationRecord
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
   belongs_to :brand
-
+  
   belongs_to :user, foreign_key: 'user_id'
   
   # enum trading_status: { waiting: 0, working: 1, completed: 2 }
@@ -36,7 +36,6 @@ class Item < ApplicationRecord
   validates :prefecture_code, presence: true
   validates :item_condition_id, presence: true
   validates :item_images, presence: true
-
   validates :size_id, presence: true
   validates :preparation_day_id, presence: true
   validates :delivery_type_id, presence: true
@@ -50,6 +49,13 @@ class Item < ApplicationRecord
   # belongs_to :buyer, class_name: "user" = （Itemに紐づく） Userモデルをbuyerと定義する。　
   # foreign_key: "seller_id" = user_idはItemレコードの『buyer_idカラム』のid番号を使う
 
-  
+  def self.search(search)
+    return Item.all unless search
+    Item.where(['name LIKE ?', "%#{search}%"])
+  end
+
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
   
 end

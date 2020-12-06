@@ -1,4 +1,3 @@
-
 .Item
   .Item__box
     .Item__box__field
@@ -168,6 +167,11 @@
               %li.bottom_error= message  
         .Item__box__field__send
           .Item__box__field__send__outer
-            = f.submit '出品する', class: 'Form__submit'
-            .Item__box__field__send__return
-              = link_to "もどる", root_path, class:"return"
+            - if @item.persisted?
+              = f.submit '編集する', class: 'Form__submit'
+              .Item__box__field__send__return
+                = link_to "もどる", root_path, class:"return"
+            - else
+              = f.submit '出品する', class: 'Form__submit'
+              .Item__box__field__send__return
+                = link_to "もどる", root_path, class:"return"

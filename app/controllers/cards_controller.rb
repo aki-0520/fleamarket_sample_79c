@@ -16,7 +16,6 @@ class CardsController < ApplicationController
         metadata: {user_id: current_user.id} 
       )
       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
-      
       if @card.save
         redirect_to root_path #ここにカード登録後のパスを指定
       else

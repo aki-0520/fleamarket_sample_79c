@@ -1,3 +1,4 @@
+
 %div.main
   %div.showMain
     %div.item
@@ -12,7 +13,7 @@
                   .main__pic5__box__lists__list_photo__sold
                     .main__pic5__box__lists__list_photo__sold__inner
                       SOLD
-                =image_tag("#{item.src}", class: '#', size: '560x346')
+                =image_tag("#{item.src}", class: '#', size: '520x346')
           %ul.item__body_image_detail
             -@item_images_detail.each_with_index do |item,index|
               -if index == 0
@@ -51,35 +52,42 @@
             -#   %td aaa
             %tr
               %th 商品のサイズ
-              %td=item.size_id
+              %td=@size
             %tr
               %th 商品の状態
-              %td=item.item_condition_id
+              %td=@item_condition
             %tr
               %th 配送料の負担
-              %td=item.shipping_charge_players_id
+              %td=@shipping_charge_player
             %tr
               %th 配送元の地域
-              %td=item.prefecture_code
+              %td=@prefecture
             %tr
               %th 発送日の目安
-              %td=item.preparation_day_id
+              %td=@preparation_day 
+            %tr
+              %th 発送方法
+              %td=@delivery_type
+            = render 'favorites/favorite', item: @item
       -if current_user.present? && current_user.id == @items_show[0][:seller_id] then
-        =link_to edit_item_path do
+        =link_to edit_item_path,"data-turbolinks": false do
           %button.purchese__btn 編集
         =link_to item_path, method: :delete do
           %button.purchese__btn 削除
       -elsif current_user.present? && @items_show[0][:buyer_id].present? == false then
-        =link_to item_purchases_path(params[:id]) do
-          %button.purchese__btn 購入画面に進む
+        =link_to item_purchases_path(params[:id]),"data-turbolinks": false do
+          %button.purchese__btn 購入画面に進む 
       -else
-        
       %div.option
-    %div.comment
-      %ul.commentContents
-      %form.comment__new
-        %textarea
-        %p
-          相手のことを考え丁寧なコメントを心がけましょう。
-          %br 不快な言葉遣いなどは利用制限や退会処分となることがあります。
-        %button.comentButton コメントする
+        %div.comment
+          = render "comment" 
+          %ul.commentContents
+          - if user_signed_in?  
+            = form_with model:@comment ,class:"new_comment", local: true do |f|
+              = f.text_area :comment,id: "comment_body",wrap: "soft"
+              = f.hidden_field :item_id, value: @items_show.ids
+              %p.comment_alert
+                相手のことを考え丁寧なコメントを心がけましょう。
+                %br 不快な言葉遣いなどは利用制限や退会処分となることがあります。
+              %button.purchese__btn{name: "button", type: "submit"}
+                コメントする

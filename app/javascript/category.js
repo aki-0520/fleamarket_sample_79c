@@ -1,7 +1,3 @@
-console.log("change1)")
-document.addEventListener("turbolinks:load"
-, function () {
-console.log('change2');
 $(function(){
   function appendOption(category){
     var html = `<option value="${category.id}">${category.name}</option>`;
@@ -89,4 +85,3 @@ $(function(){
     }
   })
 });
-})

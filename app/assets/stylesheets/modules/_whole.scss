@@ -109,3 +109,24 @@ textarea {
 .item__price__sub {
   text-align : center;
 }
+
+.favorite {
+  text-decoration: none;
+  color: black;
+}
+
+.far.fa-heart:before {
+  font-weight: 400;
+  font-family: 'FontAwesome';
+  text-decoration: none;
+  color: gray;
+  
+}
+
+.fas.fa-heart:before {
+  font-weight: 900;
+  font-family: 'FontAwesome';
+  text-decoration: none;
+  color: red;
+ 
+}
